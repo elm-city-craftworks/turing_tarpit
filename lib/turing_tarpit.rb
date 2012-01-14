@@ -12,6 +12,9 @@ module TuringTarpit
     def cell_value
       0
     end
+
+    def increment_cell_value
+    end
     
     def increment_pointer
       self.pointer_position = pointer_position + 1
@@ -19,6 +22,7 @@ module TuringTarpit
 
     def decrement_pointer
       raise PointerBoundaryError if self.pointer_position.zero?
+
       self.pointer_position = pointer_position - 1
     end
     

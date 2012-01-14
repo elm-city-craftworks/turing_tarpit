@@ -6,6 +6,16 @@ describe "Tape" do
     tape.cell_value.must_equal(0)
   end
 
+  it "must be able to increment the cell value at the current position" do
+    tape = TuringTarpit::Tape.new
+
+    tape.increment_cell_value
+    tape.cell_value.must_equal(1)
+
+    tape.increment_cell_value
+    tape.cell_value.must_equal(2)
+  end
+
   it "must have an initial pointer position of 0" do
     tape = TuringTarpit::Tape.new
     tape.pointer_position.must_equal(0)
@@ -36,7 +46,7 @@ describe "Tape" do
   it "must raise an error if decrementing when pointer position is 0" do
     tape = TuringTarpit::Tape.new
 
-    insist { tape.decrement_pointer }.must_raise(TuringTarpit::PointerBoundaryError)
-    
+    insist { tape.decrement_pointer }
+      .must_raise(TuringTarpit::PointerBoundaryError)
   end
 end
