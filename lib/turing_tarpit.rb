@@ -28,6 +28,7 @@ module TuringTarpit
     end
 
     def decrement_cell_value
+      self.cell_value = cell_value - 1
     end
     
     def increment_pointer
