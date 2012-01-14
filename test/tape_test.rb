@@ -100,4 +100,15 @@ describe "Tape" do
     tape.decrement_pointer
     tape.cell_value.must_equal(1)
   end
+
+  it "must overflow the cell value gracefully" do
+
+    tape = TuringTarpit::Tape.new
+
+    tape.decrement_cell_value
+    tape.cell_value.must_equal(255)
+
+    tape.increment_cell_value
+    tape.cell_value.must_equal(0)
+  end
 end
