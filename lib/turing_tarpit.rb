@@ -3,6 +3,7 @@ module TuringTarpit
   InvalidValue         = Class.new(StandardError)
 
   class Tape
+    CELL_SIZE = 256
     
     def initialize
       @pointer_position = 0
@@ -16,7 +17,7 @@ module TuringTarpit
     end
 
     def cell_value=(value)
-      unless value.kind_of?(Integer) && value.between?(0,255)
+      unless value.kind_of?(Integer) && value.between?(0,CELL_SIZE-1)
         raise InvalidValue 
       end
       
@@ -24,11 +25,11 @@ module TuringTarpit
     end
 
     def increment_cell_value
-      self.cell_value = cell_value + 1
+      self.cell_value = (cell_value + 1) % CELL_SIZE
     end
 
     def decrement_cell_value
-      self.cell_value = cell_value - 1
+      self.cell_value = (cell_value - 1) % CELL_SIZE
     end
     
     def increment_pointer
