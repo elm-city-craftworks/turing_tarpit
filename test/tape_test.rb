@@ -38,6 +38,19 @@ describe "Tape" do
     tape.cell_value.must_equal(2)
   end
 
+  it "must be able to decrement the cell value at the current position" do
+    tape = TuringTarpit::Tape.new
+
+    5.times { tape.increment_cell_value }
+    2.times { tape.decrement_cell_value }
+
+    tape.cell_value.must_equal(3)
+
+    tape.decrement_cell_value
+
+    tape.cell_value.must_equal(2)
+  end
+
   it "must have an initial pointer position of 0" do
     tape = TuringTarpit::Tape.new
     tape.pointer_position.must_equal(0)
