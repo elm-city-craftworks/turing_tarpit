@@ -8,7 +8,7 @@ describe "Tape" do
 
   it "must have an initial pointer position of 0" do
     tape = TuringTarpit::Tape.new
-    tape.position.must_equal(0)
+    tape.pointer_position.must_equal(0)
   end
 
   it "must be able to increment the pointer position" do
@@ -16,9 +16,9 @@ describe "Tape" do
 
     tape.increment_pointer
 
-    tape.position.must_equal(1)
+    tape.pointer_position.must_equal(1)
     
     tape.increment_pointer
-    tape.position.must_equal(2)
+    tape.pointer_position.must_equal(2)
   end
 end
