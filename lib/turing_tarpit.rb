@@ -35,7 +35,7 @@ module TuringTarpit
     end
 
     def decrement_pointer
-      raise PointerBoundaryError if self.pointer_position.zero?
+      raise PointerBoundaryError unless pointer_position > 0
 
       self.pointer_position = pointer_position - 1
     end
