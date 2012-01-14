@@ -1,4 +1,6 @@
 module TuringTarpit
+  PointerBoundaryError = Class.new(StandardError)
+
   class Tape
     
     def initialize
@@ -13,6 +15,10 @@ module TuringTarpit
     
     def increment_pointer
       self.pointer_position = pointer_position + 1
+    end
+
+    def decrement_pointer
+
     end
     
     private
