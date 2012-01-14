@@ -6,6 +6,27 @@ describe "Tape" do
     tape.cell_value.must_equal(0)
   end
 
+  it "must be able to set the cell value at the current position" do
+    tape = TuringTarpit::Tape.new
+
+    tape.cell_value = 20
+
+    tape.cell_value.must_equal(20)
+  end
+
+  it "must restrict cell values to integers between 0 and 255" do
+    tape = TuringTarpit::Tape.new
+
+    insist { tape.cell_value = 1.5 }.
+      must_raise(TuringTarpit::InvalidValue)
+
+    insist { tape.cell_value = -1 }.
+      must_raise(TuringTarpit::InvalidValue)
+
+    insist { tape.cell_value = 256
+      must_raise(TuringTarpit::InvalidValue) }
+  end
+
   it "must be able to increment the cell value at the current position" do
     tape = TuringTarpit::Tape.new
 

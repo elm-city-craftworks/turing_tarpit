@@ -1,5 +1,6 @@
 module TuringTarpit
   PointerBoundaryError = Class.new(StandardError)
+  InvalidValue         = Class.new(StandardError)
 
   class Tape
     
@@ -12,6 +13,10 @@ module TuringTarpit
     
     def cell_value
       cells[pointer_position] ||= 0
+    end
+
+    def cell_value=(other)
+      
     end
 
     def increment_cell_value
