@@ -17,10 +17,8 @@ module TuringTarpit
     end
 
     def cell_value=(value)
-      unless value.kind_of?(Integer) && value.between?(0,CELL_SIZE-1)
-        raise InvalidValue 
-      end
-      
+      raise InvalidValue unless valid_cell_value?(value)
+     
       cells[pointer_position] = value
     end
 
@@ -46,5 +44,9 @@ module TuringTarpit
     
     attr_reader :cells
     attr_writer :pointer_position
+
+    def valid_cell_value?(value)
+      value.kind_of?(Integer) && value.between?(0,CELL_SIZE-1)
+    end
   end
 end
