@@ -9,6 +9,7 @@ describe "Tape" do
   it "must be able to increment the cell value at the current position" do
     tape = TuringTarpit::Tape.new
 
+
     tape.increment_cell_value
     tape.cell_value.must_equal(1)
 
@@ -48,5 +49,21 @@ describe "Tape" do
 
     insist { tape.decrement_pointer }
       .must_raise(TuringTarpit::PointerBoundaryError)
+  end
+
+  it "must treat cell values independently" do
+    tape = TuringTarpit::Tape.new
+    tape.increment_cell_value
+
+    tape.cell_value.must_equal(1)
+
+    tape.increment_pointer
+    tape.cell_value.must_equal(0)
+
+    4.times { tape.increment_cell_value }
+    tape.cell_value.must_equal(4)
+
+    tape.decrement_pointer
+    tape.cell_value.must_equal(1)
   end
 end
