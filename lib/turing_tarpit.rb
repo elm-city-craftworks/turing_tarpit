@@ -5,15 +5,13 @@ module TuringTarpit
     
     def initialize
       @pointer_position = 0
+      @cell_value = 0
     end
     
-    attr_reader :pointer_position
-
-    def cell_value
-      0
-    end
+    attr_reader :pointer_position, :cell_value
 
     def increment_cell_value
+      self.cell_value = cell_value + 1
     end
     
     def increment_pointer
@@ -28,6 +26,6 @@ module TuringTarpit
     
     private
     
-    attr_writer :pointer_position
+    attr_writer :pointer_position, :cell_value
   end
 end
