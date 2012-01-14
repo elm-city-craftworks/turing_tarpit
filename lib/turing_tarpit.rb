@@ -15,12 +15,16 @@ module TuringTarpit
       cells[pointer_position] ||= 0
     end
 
-    def cell_value=(other)
+    def cell_value=(value)
+      unless value.kind_of?(Integer) && value.between?(0,255)
+        raise InvalidValue 
+      end
       
+      cells[pointer_position] = value
     end
 
     def increment_cell_value
-      cells[pointer_position] = cell_value + 1
+      self.cell_value = cell_value + 1
     end
     
     def increment_pointer
