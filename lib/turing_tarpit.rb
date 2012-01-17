@@ -19,12 +19,17 @@ module TuringTarpit
         consume
         element = @chars[@index]
       when "]"
-        jump_back unless cell_value.zero?
-        
-        consume 
-        raise StopIteration if @chars.length == @index    
-        
-        element = @chars[@index]
+        if cell_value.zero?
+          while @chars[@index] == "]"
+            consume
+            element = @chars[@index]
+            raise StopIteration if @chars.length == @index    
+          end
+        else
+          jump_back
+          consume 
+          element = @chars[@index]
+        end
       end
       
       consume
@@ -38,16 +43,7 @@ module TuringTarpit
     end
     
     def jump_forward
-      counter = 1 
-      until counter == 0
-        @index += 1
-        case @chars[@index]
-        when "["
-          counter += 1
-        when "]"
-          counter -= 1
-        end
-      end
+      jump("[", "]", 1)
     end
     
     def jump_back
@@ -58,6 +54,19 @@ module TuringTarpit
         when "]"
           counter += 1
         when "["
+          counter -= 1
+        end
+      end
+    end
+
+    def jump(from, to, step)
+      counter = 1
+      until counter == 0
+        @index += step
+        case @chars[@index]
+        when from
+          counter += 1
+        when to
           counter -= 1
         end
       end

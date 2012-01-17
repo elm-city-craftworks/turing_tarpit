@@ -48,7 +48,7 @@ describe "Scanner" do
   end
 
   it "must be able to process a nested loop" do
-    scanner = TuringTarpit::Scanner.new("++++[-[.-]]")
+    scanner = TuringTarpit::Scanner.new("++++[-[.-],]")
 
     4.times { |i| scanner.next(i) }
     scanner.next(4).must_equal("-")
@@ -58,6 +58,7 @@ describe "Scanner" do
     scanner.next(2).must_equal("-")
     scanner.next(1).must_equal(".")
     scanner.next(1).must_equal("-")
+    scanner.next(0).must_equal(",")
 
     insist { scanner.next(0) }.must_raise(StopIteration)
   end
