@@ -14,12 +14,12 @@ module TuringTarpit
       
       case element
       when "["
-        seek_forward_until("]") if cell_value.zero?
+        jump_forward if cell_value.zero?
 
         consume
         element = @chars[@index]
       when "]"
-        seek_backward_until("[") unless cell_value.zero?
+        jump_back unless cell_value.zero?
         
         consume 
         raise StopIteration if @chars.length == @index    
@@ -37,12 +37,21 @@ module TuringTarpit
       @index += 1
     end
     
-    def seek_forward_until(sym)
-      @index += 1 until @chars[@index] == sym
+    def jump_forward
+      counter = 1 
+      until counter == 0
+        @index += 1
+        case @chars[@index]
+        when "["
+          counter += 1
+        when "]"
+          counter -= 1
+        end
+      end
     end
     
-    def seek_backward_until(sym)
-      @index -= 1 until @chars[@index] == sym
+    def jump_back
+      @index -= 1 until @chars[@index] == "["
     end
   end
 
