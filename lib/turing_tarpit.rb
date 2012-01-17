@@ -47,16 +47,7 @@ module TuringTarpit
     end
     
     def jump_back
-      counter = 1 
-      until counter == 0
-        @index -= 1
-        case @chars[@index]
-        when "]"
-          counter += 1
-        when "["
-          counter -= 1
-        end
-      end
+      jump("]", "[", -1)
     end
 
     def jump(from, to, step)
