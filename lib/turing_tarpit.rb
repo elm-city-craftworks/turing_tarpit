@@ -40,7 +40,8 @@ module TuringTarpit
     end
     
     def next(cell_value)
-      raise StopIteration if @chars.length == @index
+      validate_index 
+
       element = @chars[@index]
       
       case element
@@ -51,10 +52,10 @@ module TuringTarpit
         element = @chars[@index]
       when "]"
         if cell_value.zero?
-          while @chars[@index] == "]"
+          while element == "]"
             consume
             element = @chars[@index]
-            raise StopIteration if @chars.length == @index    
+            validate_index  
           end
         else
           jump_back
@@ -68,6 +69,10 @@ module TuringTarpit
     end
     
     private
+
+    def validate_index
+      raise StopIteration if @chars.length == @index
+    end
     
     def consume
       @index += 1
