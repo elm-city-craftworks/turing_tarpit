@@ -4,9 +4,16 @@ module TuringTarpit
 
   class Scanner
     def initialize(source_text)
+      @chars = source_text.chars.to_a
+      @index = 0
     end
+    
 
     def next(empty_cell)
+      element = @chars[@index]
+      
+      @index += 1
+      element
     end
   end
 
