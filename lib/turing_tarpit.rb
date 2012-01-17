@@ -8,19 +8,41 @@ module TuringTarpit
       @index = 0
     end
     
-
-    def next(empty_cell)
+    def next(cell_value)
       raise StopIteration if @chars.length == @index
       element = @chars[@index]
       
-      if element == "[" && empty_cell
-        @index += 1 until @chars[@index] == "]"
-        @index += 1
+      case element
+      when "["
+        seek_forward_until("]") if cell_value.zero?
+
+        consume
+        element = @chars[@index]
+      when "]"
+        seek_backward_until("[") unless cell_value.zero?
+        
+        consume 
+        raise StopIteration if @chars.length == @index    
+        
         element = @chars[@index]
       end
       
-      @index += 1
+      consume
       element
+    end
+    
+    private
+    
+    def consume
+      @index += 1
+    end
+    
+    def seek_forward_until(sym)
+      @index += 1 until @chars[@index] == sym
+    end
+    
+    def seek_backward_until(sym)
+      @index -= 1 until @chars[@index] == sym
     end
   end
 
