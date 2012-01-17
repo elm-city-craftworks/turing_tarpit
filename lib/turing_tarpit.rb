@@ -10,7 +10,14 @@ module TuringTarpit
     
 
     def next(empty_cell)
+      raise StopIteration if @chars.length == @index
       element = @chars[@index]
+      
+      if element == "[" && empty_cell
+        @index += 1 until @chars[@index] == "]"
+        @index += 1
+        element = @chars[@index]
+      end
       
       @index += 1
       element
