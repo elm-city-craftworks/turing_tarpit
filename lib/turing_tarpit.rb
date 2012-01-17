@@ -1,6 +1,37 @@
+require "io/console"
+
 module TuringTarpit
   PointerBoundaryError = Class.new(StandardError)
   InvalidValue         = Class.new(StandardError)
+
+  class Interpreter
+    def initialize(scanner, tape)
+      @scanner = scanner
+      @tape    = tape
+    end
+
+    def run
+      loop do
+        case @scanner.next(@tape.cell_value)
+        when "+"
+          @tape.increment_cell_value
+        when "-"
+          @tape.decrement_cell_value
+        when ">"
+          @tape.increment_pointer
+        when "<"
+          @tape.decrement_pointer
+        when "."
+          print("" << @tape.cell_value)
+        when ","
+          value = STDIN.getch.bytes.first
+          next if value.zero?
+          
+          @tape.cell_value = value
+        end
+      end
+    end
+  end
 
   class Scanner
     def initialize(source_text)
