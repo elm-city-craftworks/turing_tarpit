@@ -2,6 +2,14 @@ module TuringTarpit
   PointerBoundaryError = Class.new(StandardError)
   InvalidValue         = Class.new(StandardError)
 
+  class Scanner
+    def initialize(source_text)
+    end
+
+    def next(empty_cell)
+    end
+  end
+
   class Tape
     CELL_SIZE = 256
     
