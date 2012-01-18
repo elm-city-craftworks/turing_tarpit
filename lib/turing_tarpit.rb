@@ -22,7 +22,7 @@ module TuringTarpit
         when "<"
           @tape.decrement_pointer
         when "."
-          print("" << @tape.cell_value)
+          putc(@tape.cell_value)
         when ","
           value = STDIN.getch.bytes.first
           next if value.zero?
