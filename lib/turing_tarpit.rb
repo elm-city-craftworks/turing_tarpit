@@ -5,14 +5,14 @@ module TuringTarpit
   InvalidValue         = Class.new(StandardError)
 
   class Interpreter
-    def initialize(scanner, tape)
-      @scanner = scanner
+    def initialize(tokenizer, tape)
+      @tokenizer = tokenizer
       @tape    = tape
     end
 
     def run
       loop do
-        case @scanner.next(@tape.cell_value)
+        case @tokenizer.next(@tape.cell_value)
         when "+"
           @tape.increment_cell_value
         when "-"
@@ -33,42 +33,50 @@ module TuringTarpit
     end
   end
 
-  class Scanner
+  class Tokenizer
     def initialize(source_text)
-      @chars = source_text.chars.to_a
-      @index = 0
+      @scanner = Scanner.new(source_text.chars.to_a)
     end
     
     def next(cell_value)
-      validate_index 
+      @scanner.validate_index 
 
-      element = @chars[@index]
+      element = @scanner.current_char
       
       case element
       when "["
-        jump_forward if cell_value.zero?
+        @scanner.jump_forward if cell_value.zero?
 
-        consume
-        element = @chars[@index]
+        @scanner.consume
+        element = @scanner.current_char
       when "]"
         if cell_value.zero?
           while element == "]"
-            consume
-            element = @chars[@index]
-            validate_index  
+            @scanner.consume
+            element = @scanner.current_char
+            @scanner.validate_index  
           end
         else
-          jump_back
-          consume 
-          element = @chars[@index]
+          @scanner.jump_back
+          @scanner.consume 
+          element = @scanner.current_char
         end
       end
       
-      consume
+      @scanner.consume
       element
     end
-    
-    private
+  end    
+
+  class Scanner
+    def initialize(chars)
+      @chars = chars
+      @index = 0
+    end
+
+    def current_char
+      @chars[@index]
+    end
 
     def validate_index
       raise StopIteration if @chars.length == @index
