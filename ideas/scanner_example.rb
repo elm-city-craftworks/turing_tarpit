@@ -1,23 +1,23 @@
 # a jump
-scanner = Scanner.new("[++]-")
-scanner.next_token(0) #=> "-"
+tokenizer = Tokenizer.new("[++]-")
+tokenizer.next_token(0) #=> "-"
 
 
 # an infinite loop
-scanner = Scanner.new("+[++]-")
-scanner.next_token(0) #=> "+"
-scanner.next_token(1) #=> "+"
-scanner.next_token(2) #=> "+"
-scanner.next_token(3) #=> "+"
+tokenizer = Tokenizer.new("+[++]-")
+tokenizer.next_token(0) #=> "+"
+tokenizer.next_token(1) #=> "+"
+tokenizer.next_token(2) #=> "+"
+tokenizer.next_token(3) #=> "+"
 
 # a finite loop
 
-scanner = Scanner.new("++[-]+")
+tokenizer = Tokenizer.new("++[-]+")
 
-scanner.next_token(true) #=> "+"
-scanner.next_token(false) #=> "+"
-scanner.next_token(false) #=> "-"
-scanner.next_token(false) #=> "-"
-scanner.next_token(true) #=> "+"
+tokenizer.next_token(true) #=> "+"
+tokenizer.next_token(false) #=> "+"
+tokenizer.next_token(false) #=> "-"
+tokenizer.next_token(false) #=> "-"
+tokenizer.next_token(true) #=> "+"
 
 # ^ could a boolean work?
