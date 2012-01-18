@@ -5,4 +5,10 @@ subscribe to the journal at: http://practicingruby.com
 
 ## Running Turing Tarpit
 
-You need Ruby 1.9.3 to make this project work.
+You need Ruby 1.9.3 to make this project work. It might be possible to get the
+code running using 1.9.2 + the io-console gem, but that's completely untested
+currently.
+
+To run the tests:
+
+    $ ruby test/suite.rb
