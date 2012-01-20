@@ -26,7 +26,7 @@ module TuringTarpit
         when ","
           value = STDIN.getch.bytes.first
           next if value.zero?
-          
+
           @tape.cell_value = value
         end
       end
@@ -37,12 +37,12 @@ module TuringTarpit
     def initialize(source_text)
       @scanner = Scanner.new(source_text.chars.to_a)
     end
-    
+
     def next(cell_value)
-      @scanner.validate_index 
+      @scanner.validate_index
 
       element = @scanner.current_char
-      
+
       case element
       when "["
         @scanner.jump_forward if cell_value.zero?
@@ -54,19 +54,19 @@ module TuringTarpit
           while element == "]"
             @scanner.consume
             element = @scanner.current_char
-            @scanner.validate_index  
+            @scanner.validate_index
           end
         else
           @scanner.jump_back
-          @scanner.consume 
+          @scanner.consume
           element = @scanner.current_char
         end
       end
-      
+
       @scanner.consume
       element
     end
-  end    
+  end
 
   class Scanner
     def initialize(chars)
@@ -81,15 +81,15 @@ module TuringTarpit
     def validate_index
       raise StopIteration if @chars.length == @index
     end
-    
+
     def consume
       @index += 1
     end
-    
+
     def jump_forward
       jump("[", "]", 1)
     end
-    
+
     def jump_back
       jump("]", "[", -1)
     end
@@ -110,21 +110,21 @@ module TuringTarpit
 
   class Tape
     CELL_SIZE = 256
-    
+
     def initialize
       @pointer_position = 0
       @cells            = []
     end
-    
+
     attr_reader :pointer_position
-    
+
     def cell_value
       cells[pointer_position] ||= 0
     end
 
     def cell_value=(value)
       raise InvalidValue unless valid_cell_value?(value)
-     
+
       cells[pointer_position] = value
     end
 
@@ -135,7 +135,7 @@ module TuringTarpit
     def decrement_cell_value
       self.cell_value = (cell_value - 1) % CELL_SIZE
     end
-    
+
     def increment_pointer
       self.pointer_position = pointer_position + 1
     end
@@ -145,9 +145,9 @@ module TuringTarpit
 
       self.pointer_position = pointer_position - 1
     end
-    
+
     private
-    
+
     attr_reader :cells
     attr_writer :pointer_position
 
