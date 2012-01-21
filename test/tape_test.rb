@@ -62,7 +62,7 @@ describe "Tape" do
     tape.increment_pointer
 
     tape.pointer_position.must_equal(1)
-    
+
     tape.increment_pointer
     tape.pointer_position.must_equal(2)
   end
@@ -73,7 +73,7 @@ describe "Tape" do
     tape.decrement_pointer
 
     tape.pointer_position.must_equal(2)
-    
+
     tape.decrement_pointer
     tape.pointer_position.must_equal(1)
   end

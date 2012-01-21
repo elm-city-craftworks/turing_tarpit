@@ -4,10 +4,10 @@ describe "Tokenizer" do
   it "must be able to process a program with no jumps" do
     tokenizer = TuringTarpit::Tokenizer.new("+-<>.,")
 
-    %w[+ - < > . ,].each do |sym|   
+    %w[+ - < > . ,].each do |sym|
       tokenizer.next(0).must_equal(sym)
     end
-    
+
     insist { tokenizer.next(0) }.must_raise(StopIteration)
   end
 
