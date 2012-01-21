@@ -1,9 +1,9 @@
 require "io/console"
 
-require_relative 'scanner'
-require_relative 'tape'
-require_relative 'tokenizer'
-require_relative 'interpreter'
+require_relative 'turing_tarpit/scanner'
+require_relative 'turing_tarpit/tape'
+require_relative 'turing_tarpit/tokenizer'
+require_relative 'turing_tarpit/interpreter'
 
 module TuringTarpit
   PointerBoundaryError = Class.new(StandardError)

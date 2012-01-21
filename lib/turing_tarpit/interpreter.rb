@@ -1,5 +1,3 @@
-require_relative 'turing_tarpit'
-
 module TuringTarpit
   class Interpreter
     def initialize(tokenizer, tape)

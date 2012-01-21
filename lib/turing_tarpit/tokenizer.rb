@@ -1,4 +1,4 @@
-require_relative 'tokenizer'
+require_relative 'scanner'
 
 module TuringTarpit
   class Tokenizer

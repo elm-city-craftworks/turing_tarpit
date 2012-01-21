@@ -1,5 +1,3 @@
-require_relative 'turing_tarpit'
-
 module TuringTarpit
   class Tape
     CELL_SIZE = 256
