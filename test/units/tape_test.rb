@@ -1,4 +1,4 @@
-require_relative "helper"
+require_relative "../helper"
 
 describe "Tape" do
   it "must have an initial cell value of 0" do

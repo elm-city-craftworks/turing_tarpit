@@ -1,4 +1,4 @@
-require_relative "helper"
+require_relative "../helper"
 
 describe "Tokenizer" do
   it "must be able to process a program with no jumps" do
