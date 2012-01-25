@@ -22,7 +22,9 @@ In OS X terminal, this can be done by pressing Ctrl+Shift+2.
 Both examples are based on the code in the 
 [Brainfuck Wikipedia article](http://en.wikipedia.org/wiki/Brainfuck).
 
-## To run the tests:
+## Running the tests
+
+Before sending pull requests, please make sure all tests pass.
 
     $ bundle
     $ ruby test/suite.rb
