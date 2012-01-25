@@ -6,11 +6,11 @@ module TuringTarpit
     end
 
     def current_char
-      @chars[@index]
+      chars[index]
     end
 
     def validate_index
-      raise StopIteration if @chars.length == @index
+      raise StopIteration if chars.length == index
     end
 
     def consume
