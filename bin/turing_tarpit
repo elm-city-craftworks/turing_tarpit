@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/turing_tarpit"
+
+interpreter = TuringTarpit::Interpreter.new(ARGF.read)
+
+TuringTarpit::Evaluator.run(interpreter)
