@@ -1,30 +1,34 @@
 module TuringTarpit
   class Interpreter
     def initialize(tokenizer, tape)
-      @tokenizer = tokenizer
-      @tape    = tape
+      self.tokenizer = tokenizer
+      self.tape      = tape
     end
 
     def run
       loop do
-        case @tokenizer.next(@tape.cell_value)
+        case tokenizer.next(tape.cell_value)
         when "+"
-          @tape.increment_cell_value
+          tape.increment_cell_value
         when "-"
-          @tape.decrement_cell_value
+          tape.decrement_cell_value
         when ">"
-          @tape.increment_pointer
+          tape.increment_pointer
         when "<"
-          @tape.decrement_pointer
+          tape.decrement_pointer
         when "."
-          putc(@tape.cell_value)
+          putc(tape.cell_value)
         when ","
           value = STDIN.getch.bytes.first
           next if value.zero?
 
-          @tape.cell_value = value
+          tape.cell_value = value
         end
       end
     end
+
+    private
+
+    attr_accessor :tape, :tokenizer
   end
 end

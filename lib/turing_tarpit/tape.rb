@@ -3,8 +3,8 @@ module TuringTarpit
     CELL_SIZE = 256
 
     def initialize
-      @pointer_position = 0
-      @cells            = []
+      self.pointer_position = 0
+      self.cells            = []
     end
 
     attr_reader :pointer_position
@@ -39,8 +39,8 @@ module TuringTarpit
 
     private
 
-    attr_reader :cells
-    attr_writer :pointer_position
+    attr_accessor :cells
+    attr_writer   :pointer_position
 
     def valid_cell_value?(value)
       value.kind_of?(Integer) && value.between?(0,CELL_SIZE-1)

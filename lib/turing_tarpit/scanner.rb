@@ -1,8 +1,8 @@
 module TuringTarpit
   class Scanner
     def initialize(chars)
-      @chars = chars
-      @index = 0
+      self.chars = chars
+      self.index = 0
     end
 
     def current_char
@@ -14,7 +14,7 @@ module TuringTarpit
     end
 
     def consume
-      @index += 1
+      self.index = index + 1
     end
 
     def jump_forward
@@ -28,8 +28,8 @@ module TuringTarpit
     def jump(from, to, step)
       counter = 1
       until counter == 0
-        @index += step
-        case @chars[@index]
+        self.index = index + step
+        case chars[index]
         when from
           counter += 1
         when to
@@ -37,5 +37,9 @@ module TuringTarpit
         end
       end
     end
+
+    private 
+    
+    attr_accessor :chars, :index
   end
 end
