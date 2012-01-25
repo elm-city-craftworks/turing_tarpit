@@ -2,7 +2,7 @@ module TuringTarpit
   class Scanner
     def initialize(chars)
       self.chars = chars
-      self.index = 0
+      self.index = -1
     end
 
     def current_char
@@ -10,9 +10,14 @@ module TuringTarpit
     end
 
     def next_char
-      self.index = index + 1
+      raise StopIteration if chars.length == index + 1
 
+      self.index = index + 1
       current_char
+    end
+
+    def next_while(char)
+      next_char until current_char != char
     end
 
     def jump_forward
@@ -21,10 +26,6 @@ module TuringTarpit
 
     def jump_back
       jump("]", "[", -1)
-    end
-
-    def validate_index
-      raise StopIteration if chars.length == index
     end
 
     private 
