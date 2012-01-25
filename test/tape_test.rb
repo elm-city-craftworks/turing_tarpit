@@ -23,8 +23,7 @@ describe "Tape" do
     insist { tape.cell_value = -1 }.
       must_raise(TuringTarpit::InvalidValue)
 
-    insist { tape.cell_value = 256
-      must_raise(TuringTarpit::InvalidValue) }
+    insist { tape.cell_value = 256 }.must_raise(TuringTarpit::InvalidValue) 
   end
 
   it "must be able to increment the cell value at the current position" do
