@@ -23,6 +23,8 @@ module TuringTarpit
       scanner.current_char
     end
 
+    private
+
     attr_accessor :scanner
   end
 end
