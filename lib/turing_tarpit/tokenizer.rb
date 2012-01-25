@@ -13,7 +13,7 @@ module TuringTarpit
         scanner.next_char
       when Scanner::BACKWARD_JUMP
         if cell_value.zero?
-          scanner.next_while(Scanner::BACKWARD_JUMP) 
+          scanner.skip_while(Scanner::BACKWARD_JUMP) 
         else
           scanner.jump_back
           scanner.next_char

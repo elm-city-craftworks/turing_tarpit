@@ -19,7 +19,7 @@ module TuringTarpit
       current_char
     end
 
-    def next_while(char)
+    def skip_while(char)
       next_char until current_char != char
     end
 
