@@ -1,5 +1,8 @@
 module TuringTarpit
   class Scanner
+    FORWARD_JUMP  = "["
+    BACKWARD_JUMP = "]"
+
     def initialize(chars)
       self.chars = chars
       self.index = -1
@@ -21,11 +24,11 @@ module TuringTarpit
     end
 
     def jump_forward
-      jump("[", "]", 1)
+      jump(FORWARD_JUMP, BACKWARD_JUMP, 1)
     end
 
     def jump_back
-      jump("]", "[", -1)
+      jump(BACKWARD_JUMP, FORWARD_JUMP, -1)
     end
 
     private 
