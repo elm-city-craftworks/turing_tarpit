@@ -25,10 +25,12 @@ module TuringTarpit
 
     def jump_forward
       jump(FORWARD_JUMP, BACKWARD_JUMP, 1)
+      next_char
     end
 
     def jump_back
       jump(BACKWARD_JUMP, FORWARD_JUMP, -1)
+      next_char
     end
 
     private 
