@@ -9,12 +9,10 @@ module TuringTarpit
       chars[index]
     end
 
-    def validate_index
-      raise StopIteration if chars.length == index
-    end
-
-    def consume
+    def next_char
       self.index = index + 1
+
+      current_char
     end
 
     def jump_forward
@@ -24,6 +22,12 @@ module TuringTarpit
     def jump_back
       jump("]", "[", -1)
     end
+
+    def validate_index
+      raise StopIteration if chars.length == index
+    end
+
+    private 
 
     def jump(from, to, step)
       counter = 1
@@ -37,8 +41,6 @@ module TuringTarpit
         end
       end
     end
-
-    private 
     
     attr_accessor :chars, :index
   end

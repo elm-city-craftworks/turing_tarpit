@@ -15,23 +15,20 @@ module TuringTarpit
       when "["
         scanner.jump_forward if cell_value.zero?
 
-        scanner.consume
-        element = scanner.current_char
+        element = scanner.next_char
       when "]"
         if cell_value.zero?
           while element == "]"
-            scanner.consume
-            element = scanner.current_char
+            element = scanner.next_char
             scanner.validate_index
           end
         else
           scanner.jump_back
-          scanner.consume
-          element = scanner.current_char
+          element = scanner.next_char
         end
       end
 
-      scanner.consume
+      scanner.next_char
       element
     end
 
