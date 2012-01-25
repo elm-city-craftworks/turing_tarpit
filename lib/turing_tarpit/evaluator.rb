@@ -52,7 +52,7 @@ module TuringTarpit
     end
 
     def input_cell_value
-      value = STDIN.getch.ord
+      value = $stdin.getch.ord
       return if value.zero?
 
       self.cell_value = value

@@ -101,7 +101,6 @@ describe "Evaluator" do
   end
 
   it "must overflow the cell value gracefully" do
-
     evaluator = TuringTarpit::Evaluator.new
 
     evaluator.decrement_cell_value
