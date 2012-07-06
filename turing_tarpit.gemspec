@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.executables = ["turing_tarpit"]
 
   s.add_development_dependency "simplecov"
+  s.add_runtime_dependency "mozart"
 
   s.required_ruby_version = ">= 1.9.3"
   s.required_rubygems_version = ">= 1.3.6"

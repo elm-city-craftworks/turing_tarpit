@@ -1,5 +1,9 @@
+require "mozart"
+
 module TuringTarpit
   class Interpreter
+    include Mozart::Environment
+
     FORWARD_JUMP  = "["
     BACKWARD_JUMP = "]"
 
@@ -11,8 +15,8 @@ module TuringTarpit
                    "," => :input_cell_value }
 
     def initialize(chars)
-      self.chars = chars
-      self.index = -1
+      _(:chars, chars)
+      _(:index, V(:position, :position => -1))
     end
 
     def next_operation(cell_value)
@@ -35,6 +39,18 @@ module TuringTarpit
     end
 
     private
+
+    def index
+      _(:index).position
+    end
+
+    def index=(position)
+      _(:index).position = position 
+    end
+
+    def chars
+      _(:chars)
+    end
 
     def current_char
       chars[index]
@@ -73,7 +89,5 @@ module TuringTarpit
         end
       end
     end
-    
-    attr_accessor :chars, :index
   end
 end

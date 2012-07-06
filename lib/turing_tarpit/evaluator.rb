@@ -1,6 +1,10 @@
+require "mozart"
+
 module TuringTarpit
   class Evaluator 
     CELL_SIZE = 256
+
+    include Mozart::Environment
 
     def self.run(interpreter)
       evaluator = new
@@ -13,11 +17,9 @@ module TuringTarpit
     end
 
     def initialize
-      self.pointer_position = 0
-      self.cells            = []
+      _(:pointer, V(:position, :position => 0))
+      _(:cells, [])
     end
-
-    attr_reader :pointer_position
 
     def cell_value
       cells[pointer_position] ||= 0
@@ -58,10 +60,19 @@ module TuringTarpit
       self.cell_value = value
     end
 
+    def cells
+      _(:cells)
+    end
+
+    def pointer_position
+      _(:pointer).position
+    end
+
     private
 
-    attr_accessor :cells, :parser
-    attr_writer   :pointer_position
+    def pointer_position=(value)
+      _(:pointer).position = value
+    end
 
     def valid_cell_value?(value)
       value.kind_of?(Integer) && value.between?(0,CELL_SIZE-1)
